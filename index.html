@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="style.css" rel="stylesheet">
+        <script src="script.js" defer></script>
+        <title>FlexDiet</title>
+    </head>
+    <body>
+    
+    <h1>App</h1>
+    
+    <!-- MENU -->
+    <fieldset id="fieldset_menu">
+    <input type="button" id="botao_prontuario" value="Prontuario" class="menu"></input>
+    <input type="button" id="botao_orientacao" value="Orientações" class="menu"></input>
+    <input type="button" id="botao_antropometria" value="Antropometria" class="menu"></input>
+    <input type="button" id="botao_planejamento" value="Planejamento" class="menu"></input>
+    </fieldset>
+    
+    <!-- PRONTUARIO -->
+    <fieldset id="fieldset_prontuario" class="hide">
+    <textarea id="prontuario" rows="10" cols="40"></textarea>
+    </fieldset>
+    
+    <!-- ANTROPOMETRIA -->
+    <fieldset id="fieldset_antropometria" class = "hide">
+    
+    <p>Idade: <input id="idade" type="number" placeholder="idade" ></input></p>
+    
+    <p>Sexo: 
+    <select id="sexo" >
+        <option value="feminino">Feminino</option>
+        <option value="masculino">Masculino</option>
+    </select>
+    </p>
+   
+    <p>Peso (Kg): 
+    <input id="peso" type="number" placeholder="peso" ></input>
+    </p> 
+    
+    <label id="label_antropometria">Altura (cm): <input id="altura" type="number" placeholder="altura" ></input></label>
+    
+    <p>IMC: <span id="valor_imc"></span>
+    <p>Peso máximo: <span id="span_peso_maximo"></span>
+    <p>Diagnóstico: <span id="span_diagnostico_imc"></span>
+    </fieldset>
+    
+    
+    
+    </body>
+</html>
