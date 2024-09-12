@@ -3,9 +3,9 @@ body{
     margin: auto;
 }
 
-/* .hide{ */
-    /* display:none; */
-/* } */
+.hide{
+    display:none;
+}
 
 .menu{
     background-color: white;
