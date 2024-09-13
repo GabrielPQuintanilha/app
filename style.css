@@ -27,3 +27,8 @@ h1{
 #prontuario{
     width:99%;
 }
+
+input[type=button]{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
