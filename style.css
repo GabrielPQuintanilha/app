@@ -32,7 +32,7 @@ h1{
 input[type=button]{
     -moz-appearance: none;
     -webkit-appearance: none;
-
+    color:black;
 }
 
 #version{
