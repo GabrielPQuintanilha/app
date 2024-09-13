@@ -22,6 +22,7 @@ body{
 
 h1{
     text-align:center;
+    margin-bottom:0px;
 }
 
 #prontuario{
@@ -31,4 +32,12 @@ h1{
 input[type=button]{
     -moz-appearance: none;
     -webkit-appearance: none;
+
+}
+
+#version{
+    color:black;
+    text-align:center;
+    margin-top:0px;
+    font-size:12px;
 }
