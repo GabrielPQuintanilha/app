@@ -58,18 +58,26 @@ function atualizarImc(){
         }
     }else if (fase_vida=="criança"){
         if(sexo_input.value=="feminino"){
-            if (idadeInput.value==5){
-                peso_maximo = 16.8*((altura/100)*(altura/100));
-                if(imc>=16.9){
-                    diagnosticoIMC = "Excesso de Peso";}
-                else if (imc>=15.2){
-                    diagnosticoIMC = "Eutrófico";}}
-            else if (idadeInput.value==6){}
-            else if (idadeInput.value==7){}
-            else if (idadeInput.value==8){}
-            else if (idadeInput.value==9){}
-            else if (idadeInput.value==10){}
-            else if (idadeInput.value==11){}
+            if (idadeInput.value==5){peso_maximo = 16.89*((altura/100)*(altura/100));
+                if(imc>=16.9){diagnosticoIMC = "Excesso de Peso";}
+                else if (imc>=13.9){diagnosticoIMC = "Eutrófico";}}
+            else if (idadeInput.value==6){peso_maximo = 16.99*((altura/100)*(altura/100));
+                if(imc>=17){diagnosticoIMC = "Excesso de Peso";}
+                else if (imc>=13.9){diagnosticoIMC = "Eutrófico";}}
+            else if (idadeInput.value==7){peso_maximo = 17.29*((altura/100)*(altura/100));
+                if(imc>=17.3){diagnosticoIMC = "Excesso de Peso";}
+                else if (imc>=13.9){diagnosticoIMC = "Eutrófico";}}
+            else if (idadeInput.value==8){peso_maximo = 17.69*((altura/100)*(altura/100));
+                if(imc>=17.7){diagnosticoIMC = "Excesso de Peso";}
+                else if (imc>=14.1){diagnosticoIMC = "Eutrófico";}}
+            else if (idadeInput.value==9){peso_maximo = 18.29*((altura/100)*(altura/100));
+                if(imc>=18.3){diagnosticoIMC = "Excesso de Peso";}
+                else if (imc>=14.4){diagnosticoIMC = "Eutrófico";}}
+            else if (idadeInput.value==10){peso_maximo = 18.99*((altura/100)*(altura/100));
+                if(imc>=19){diagnosticoIMC = "Excesso de Peso";}
+                else if (imc>=14.8){diagnosticoIMC = "Eutrófico";}                          }
+            else if (idadeInput.value==11){peso_maximo = 19.89*((altura/100)*(altura/100));
+                if(imc>=19){diagnosticoIMC = "Excesso de Peso";}                         }
             else if (idadeInput.value==12){}
             else if (idadeInput.value==13){}
             else if (idadeInput.value==14){}
