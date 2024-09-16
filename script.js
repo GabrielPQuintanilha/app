@@ -1,11 +1,11 @@
 // Como fazer so um menu abrir por vez?
 
-// calcular imc e atualizar
+// atualizar peso e  imc
 let imc ="";
 const spanImc= document.getElementById('valor_imc');
 let peso= "";
 let pesoInput = document.getElementById('peso');
-function atualizarPeso(){
+function atualizarPesoIMC(){
     peso = pesoInput.value;
     imc = peso/((altura/100)*(altura/100));
     spanImc.textContent = imc.toFixed(2);
@@ -35,6 +35,7 @@ function atualizarIdade(){
             fase_vida = "criança";
         }
     }
+    
 }
 idadeInput.addEventListener('input', atualizarFuncoes);
 
@@ -44,62 +45,39 @@ const spanDiagnosticoImc= document.getElementById('span_diagnostico_imc');
 const spanPesoMaximo= document.getElementById('span_peso_maximo');
 let peso_maximo = "";
 let  sexo_input= document.getElementById('sexo');
-function atualizarImc(){
-    if (fase_vida=="adulto"){
-        peso_maximo = 25*((altura/100)*(altura/100));
-        if(imc>29.9){
-            diagnosticoIMC = "Obesidade";
-        }else if(imc>=25){
-            diagnosticoIMC="Sobrepeso";
-        }else if (imc>=18.5){
-            diagnosticoIMC="Eutrófico";
-        }else{
-            diagnosticoIMC="Magreza";
+const tabela_idade                 = ["0","0","0","0","0","5","6","7","8","9","10","11","12","13","14","15","16","17","18"];
+const imc_maximo_criança_feminino  = ["0","0","0","0","0","16.90","17.00", "17.30","17.70","18.30","19", "19.90", "20.80", "21.80", "22.70", "23.50", "24.10", "24.50", "24.80"];
+const imc_minimo_criança_feminino  = ["0","0","0","0","0","13.90","13.90", "13.90", "14.10", "14.40", "14.80", "15.30", "16.00", "16.60", "17.20", "17.80","18.20", "18.40", "18.60"];
+let imc_maximo ="";
+let imc_minimo ="";
+
+// idade 5 funciona, idade 6 pra cima nao
+
+function atualizarDiagnostico(){
+    if (fase_vida=="criança"){
+        if (sexo_input.value =="feminino"){
+            peso_maximo = imc_maximo_criança_feminino[idadeInput.value]*((altura/100)*(altura/100));
+            imc_minimo = imc_minimo_criança_feminino[idadeInput.value];
+            imc_maximo = imc_maximo_criança_feminino[idadeInput.value];
+            if(imc<imc_minimo){diagnosticoIMC="Magreza";}
+            else if (imc>=imc_minimo&& imc<=imc_maximo){diagnosticoIMC = "Eutrófico";}
+            else if (imc>imc_maximo){diagnosticoIMC="Excesso de peso";}
         }
-    }else if (fase_vida=="criança"){
-        if(sexo_input.value=="feminino"){
-            if (idadeInput.value==5){peso_maximo = 16.9*((altura/100)*(altura/100));
-                if(imc>16.9){diagnosticoIMC = "Excesso de Peso";}
-                else if (imc>13.9){diagnosticoIMC = "Eutrófico";}}
-            else if (idadeInput.value==6){peso_maximo = 17*((altura/100)*(altura/100));
-                if(imc>17){diagnosticoIMC = "Excesso de Peso";}
-                else if (imc>13.9){diagnosticoIMC = "Eutrófico";}}
-            else if (idadeInput.value==7){peso_maximo = 17.3*((altura/100)*(altura/100));
-                if(imc>17.3){diagnosticoIMC = "Excesso de Peso";}
-                else if (imc>13.9){diagnosticoIMC = "Eutrófico";}}
-            else if (idadeInput.value==8){peso_maximo = 17.7*((altura/100)*(altura/100));
-                if(imc>17.7){diagnosticoIMC = "Excesso de Peso";}
-                else if (imc>14.1){diagnosticoIMC = "Eutrófico";}}
-            else if (idadeInput.value==9){peso_maximo = 18.3*((altura/100)*(altura/100));
-                if(imc>18.3){diagnosticoIMC = "Excesso de Peso";}
-                else if (imc>14.4){diagnosticoIMC = "Eutrófico";}}
-            else if (idadeInput.value==10){peso_maximo = 19*((altura/100)*(altura/100));
-                if(imc>19){diagnosticoIMC = "Excesso de Peso";}
-                else if (imc>14.8){diagnosticoIMC = "Eutrófico";}}
-            else if (idadeInput.value==11){peso_maximo = 19.9*((altura/100)*(altura/100));
-                if(imc>19){diagnosticoIMC = "Excesso de Peso";}
-                else if (imc>15.3){diagnosticoIMC = "Eutrófico";}}
-            else if (idadeInput.value==12){peso_maximo = 20.8*((altura/100)*(altura/100));
-                if(imc>20.8){diagnosticoIMC = "Excesso de Peso";}
-                else if (imc>16){diagnosticoIMC = "Eutrófico";}}
-            else if (idadeInput.value==13){}
-            else if (idadeInput.value==14){}
-            else if (idadeInput.value==15){}
-            else if (idadeInput.value==16){}
-            else if (idadeInput.value==17){}
-            else if (idadeInput.value==18){}}
-        else if (sexo_input.value=="masculino"){}
     }
+    else if (fase_vida=="adulto"){console.log("adulto")}
     spanDiagnosticoImc.textContent = diagnosticoIMC;   
     spanPesoMaximo.textContent = peso_maximo.toFixed(2);
+    return
 }
+
+
 
 // Funcao para atualizar todas as funcoes ao clicar em inputs
 function atualizarFuncoes(){
     atualizarAltura();
     atualizarIdade();
-    atualizarPeso();
-    atualizarImc();
+    atualizarPesoIMC();
+    atualizarDiagnostico();
 }
 
 
