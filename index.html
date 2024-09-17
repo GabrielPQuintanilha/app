@@ -13,7 +13,7 @@
     <body>
     
     <h1>App</h1>
-    <p id="version">V 0.2</p>
+    <p id="version">V 0.3</p>
     
     <!-- MENU -->
     <fieldset id="fieldset_menu">
@@ -31,6 +31,7 @@
     <!-- ANTROPOMETRIA -->
     <fieldset id="fieldset_antropometria" class = "hide">
     
+    <div id="div_antropometria_esquerda">
     <p>Idade: <input id="idade" type="number" placeholder="idade" ></input></p>
     
     <p>Sexo: 
@@ -45,10 +46,13 @@
     </p> 
     
     <label id="label_antropometria">Altura (cm): <input id="altura" type="number" placeholder="altura" ></input></label>
-    
+    </div>
+    <div id="div_antropometria_direita">
     <p>IMC: <span id="valor_imc"></span>
     <p>Peso máximo: <span id="span_peso_maximo"></span>
     <p>Diagnóstico: <span id="span_diagnostico_imc"></span>
+    </div>
+    
     </fieldset>
     
     
