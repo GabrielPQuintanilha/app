@@ -45,9 +45,11 @@ const spanDiagnosticoImc= document.getElementById('span_diagnostico_imc');
 const spanPesoMaximo= document.getElementById('span_peso_maximo');
 let peso_maximo = "";
 let  sexo_input= document.getElementById('sexo');
-const tabela_idade                 = ["0","0","0","0","0","5","6","7","8","9","10","11","12","13","14","15","16","17","18"];
-const imc_maximo_criança_feminino  = ["0","0","0","0","0","16.90","17.00", "17.30","17.70","18.30","19", "19.90", "20.80", "21.80", "22.70", "23.50", "24.10", "24.50", "24.80"];
-const imc_minimo_criança_feminino  = ["0","0","0","0","0","13.90","13.90", "13.90", "14.10", "14.40", "14.80", "15.30", "16.00", "16.60", "17.20", "17.80","18.20", "18.40", "18.60"];
+const tabela_idade                 = ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18"];
+const imc_maximo_criança_feminino  = ["0","0","17.10","16.80","16.80","16.90","17.00", "17.30", "17.70", "18.30", "19.00", "19.90", "20.80", "21.80", "22.70", "23.50", "24.10", "24.50", "24.80"];
+const imc_minimo_criança_feminino  = ["0","0","14.40","14.20","14.00","13.90","13.90", "13.90", "14.10", "14.40", "14.80", "15.30", "16.00", "16.60", "17.20", "17.80", "18.20", "18.40", "18.60"];
+const imc_maximo_criança_masculino = ["0","0","17.30","16.90","16.70","16.60","16.80", "17.00", "17.40", "17.90", "18.50", "19.20", "19.90", "20.80", "21.80", "22.70", "23.50", "24.30", "24.90"];
+const imc_minimo_criança_masculino = ["0","0","14.80","14.40","14.10","14.00","14.10", "14.20", "14.40", "14.60", "14.90", "15.30", "15.80", "16.40", "17.00", "17.60", "18.20", "18.80", "19.20"];
 let imc_maximo ="";
 let imc_minimo ="";
 
@@ -63,13 +65,21 @@ function atualizarDiagnostico(){
             else if (imc>=imc_minimo&& imc<=imc_maximo){diagnosticoIMC = "Eutrófico";}
             else if (imc>imc_maximo){diagnosticoIMC="Excesso de peso";}
         }
+        else {
+            peso_maximo = imc_maximo_criança_masculino[idadeInput.value]*((altura/100)*(altura/100));
+            imc_minimo = imc_minimo_criança_masculino[idadeInput.value];
+            imc_maximo = imc_maximo_criança_masculino[idadeInput.value];
+            if(imc<imc_minimo){diagnosticoIMC="Magreza";}
+            else if (imc>=imc_minimo&& imc<=imc_maximo){diagnosticoIMC = "Eutrófico";}
+            else if (imc>imc_maximo){diagnosticoIMC="Excesso de peso";}
+        }
     }
     else if (fase_vida=="adulto"){console.log("adulto")}
     spanDiagnosticoImc.textContent = diagnosticoIMC;   
     spanPesoMaximo.textContent = peso_maximo.toFixed(2);
     return
 }
-
+sexo_input.addEventListener('input', atualizarFuncoes);
 
 
 // Funcao para atualizar todas as funcoes ao clicar em inputs
