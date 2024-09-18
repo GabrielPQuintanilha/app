@@ -74,7 +74,14 @@ function atualizarDiagnostico(){
             else if (imc>imc_maximo){diagnosticoIMC="Excesso de peso";}
         }
     }
-    else if (fase_vida=="adulto"){console.log("adulto")}
+    else if (fase_vida=="adulto"){
+            peso_maximo = 25*((altura/100)*(altura/100));
+            imc_minimo = 18.5;
+            imc_maximo = 25;
+            if(imc<imc_minimo){diagnosticoIMC="Magreza";}
+            else if (imc>=imc_minimo&& imc<=imc_maximo){diagnosticoIMC = "Eutrófico";}
+            else if (imc>imc_maximo){diagnosticoIMC="Excesso de peso";}
+    }
     spanDiagnosticoImc.textContent = diagnosticoIMC;   
     spanPesoMaximo.textContent = peso_maximo.toFixed(2);
     return
