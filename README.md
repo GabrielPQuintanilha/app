@@ -3,7 +3,7 @@
 ## Funções:
 - Prontuario;
 - Calculo de IMC para adultos;
-- Calculo de IMC para crianças (de 5 a 18 anos) e diagnostico nutricional com base no IMC/idade;
+- Calculo de IMC para crianças (de 5 a 18 anos) e diagnostico nutricional com base no IMC/idade (baseado nos indices da OMS);
 
 ## Limitações:
 - Diagnostico apenas com Magreza, Eutrofico e "Excesso de peso";
