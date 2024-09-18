@@ -6,7 +6,8 @@
 - Calculo de IMC para crianças (de 5 a 18 anos) e diagnostico nutricional com base no IMC/idade;
 
 ## Limitações:
-- Diagnostico apenas com Magreza, Eutrofico e "Excesso de peso".
+- Diagnostico apenas com Magreza, Eutrofico e "Excesso de peso";
+- Avaliação infantil com base em idade "cheia";
 
 ## Futuras adições:
 - Incluir diagnostico de Obesidade infantil;
