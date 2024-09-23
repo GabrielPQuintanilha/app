@@ -5,7 +5,7 @@ body{
 }
 
 .hide{
-    display:none;
+    display:none !important;
 }
 
 .menu{
@@ -50,7 +50,15 @@ input[type=button]{
     font-size:12px;
 }
 
-#fieldset_prontuario, #fieldset_antropometria{margin-left:5%;margin-right:5%;}
+#div_antropometria{
+    padding-left:5%;padding-right:5%;width:145px;
+}
 
-input[type="number"]{width:49px;}
+#fieldset_antropometria{
+    display:flex;flex-wrap:wrap;justify-content:left;
+}
+
+input[type="number"]{
+    width:49px;
+}
 
