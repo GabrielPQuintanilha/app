@@ -4,13 +4,17 @@
 - Prontuario;
 - Calculo de IMC para adultos;
 - Calculo de IMC para crianças (de 5 a 18 anos) e diagnostico nutricional com base no IMC/idade (baseado nos indices da OMS);
+- Calculo de TMB para adultos (baseado em Harris Benefict) e crianças (Baseado em Schofield Weight and Height);
 
 ## Limitações:
 - Diagnostico apenas com Magreza, Eutrofico e "Excesso de peso";
 - Avaliação infantil com base em idade "cheia";
+- Calculo de TMB limitado em opções de fórmula;
+- Calculo de consumo de água baseado em peso máximo/eutrófico;
 
 ## Futuras adições:
 - Incluir diagnostico de Obesidade infantil;
-- Diagnostico nutricional para adultos;
 - Calculo de TMB com base em diferentes protocolos;
-- Calculo de consumo minimo e máximo de água;
+- Incluir criação de planos alimentares;
+- Incluir sistema de Credenciais;
+
