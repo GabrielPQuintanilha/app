@@ -1,27 +1,28 @@
 // Como fazer so um menu abrir por vez?
 
 
-
+let tmb ="";
 let imc ="";
-let peso= "";
-let altura= "";
-let fase_vida="";
+let peso = "";
+let altura = "";
+let fase_vida ="";
+let medio_agua ="";
 let imc_maximo ="";
 let imc_minimo ="";
+let minimo_agua ="";
 let peso_maximo = "";
 let diagnosticoIMC = "";
-let tmb ="";
-let minimo_agua="";
-let medio_agua="";
 
-let fieldset_prontuario_aberto=false;
-let fieldset_antropometria_aberto=false;
+let div_planejamento_aberto = false;
+let fieldset_prontuario_aberto = false;
+let fieldset_antropometria_aberto = false;
 
-let pesoInput = document.getElementById('peso');
-let sexo_input= document.getElementById('sexo');
-let idadeInput = document.getElementById('idade');
-let alturaInput = document.getElementById('altura');
+const pesoInput = document.getElementById('peso');
+const sexo_input= document.getElementById('sexo');
+const idadeInput = document.getElementById('idade');
+const alturaInput = document.getElementById('altura');
 const botao_prontuario = document.getElementById('botao_prontuario');
+const botao_planejamento = document.getElementById('botao_planejamento');
 const botao_antropometria = document.getElementById('botao_antropometria');
 
 const tabela_idade                 = ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18"];
@@ -30,19 +31,21 @@ const imc_minimo_criança_feminino  = ["0","0","14.40","14.20","14.00","13.90","
 const imc_maximo_criança_masculino = ["0","0","17.30","16.90","16.70","16.60","16.80", "17.00", "17.40", "17.90", "18.50", "19.20", "19.90", "20.80", "21.80", "22.70", "23.50", "24.30", "24.90"];
 const imc_minimo_criança_masculino = ["0","0","14.80","14.40","14.10","14.00","14.10", "14.20", "14.40", "14.60", "14.90", "15.30", "15.80", "16.40", "17.00", "17.60", "18.20", "18.80", "19.20"];
 
-const spanImc= document.getElementById('valor_imc');
-const spanPesoMaximo= document.getElementById('span_peso_maximo');
-const spanDiagnosticoImc= document.getElementById('span_diagnostico_imc');
-const span_tmb= document.getElementById('span_tmb');
+const spanImc = document.getElementById('valor_imc');
+const span_tmb = document.getElementById('span_tmb');
+const span_agua = document.getElementById('span_agua');
+const spanPesoMaximo = document.getElementById('span_peso_maximo');
 const fieldset_prontuario = document.querySelector('#fieldset_prontuario');
+const spanDiagnosticoImc = document.getElementById('span_diagnostico_imc');
 const fieldset_antropometria = document.querySelector('#fieldset_antropometria');
-const span_agua= document.getElementById('span_agua');
+
 
 pesoInput.addEventListener('input', atualizarFuncoes);
 idadeInput.addEventListener('input', atualizarFuncoes);
 sexo_input.addEventListener('input', atualizarFuncoes);
 alturaInput.addEventListener('input', atualizarFuncoes);
 botao_prontuario.addEventListener('click', abrir_prontuario);
+botao_planejamento.addEventListener('click', abrir_planejamento);
 botao_antropometria.addEventListener('click', abrir_antropometria);
 
 
@@ -126,6 +129,8 @@ function atualizarAgua(){
     if(idadeInput.value >18){minimo_agua = peso_maximo*35; span_agua.textContent = minimo_agua.toFixed(0);}
     else{minimo_agua=peso_maximo*40;span_agua.textContent = minimo_agua.toFixed(0)}}
 
+
+
 // Botoes para abrir
 
 // abrir prontuario
@@ -146,3 +151,11 @@ function abrir_antropometria(){
         fieldset_antropometria.classList.add("hide");
         fieldset_antropometria_aberto = false;}}
 
+// Funcao abrir Planejamento
+function abrir_planejamento(){
+    if (div_planejamento_aberto==false){
+        div_planejamento.classList.remove("hide");
+        div_planejamento_aberto = true;}
+    else{
+        div_planejamento.classList.add("hide");
+        div_planejamento_aberto = false;}}
