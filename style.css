@@ -62,3 +62,8 @@ input[type="number"]{
     width:49px;
 }
 
+.div_submenu{
+    border:1px solid black;
+    padding:5px;
+}
+
