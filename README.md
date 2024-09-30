@@ -7,13 +7,14 @@
 - Calculo de TMB para adultos (baseado em Harris Benefict) e crianças (Baseado em Schofield Weight and Height);
 
 ## Limitações:
-- Diagnostico apenas com Magreza, Eutrofico e "Excesso de peso";
 - Avaliação infantil com base em idade "cheia";
 - Calculo de TMB limitado em opções de fórmula;
 - Calculo de consumo de água baseado em peso máximo/eutrófico;
 
 ## Futuras adições:
-- Incluir diagnostico de Obesidade infantil;
+- ~~Incluir calculo e diagnostico de IMC para adultos;~~
+- ~~Incluir calculo de TMB para adultos e crianças;~~
+- ~~Incluir diagnostico de Obesidade infantil;~~
 - Calculo de TMB com base em diferentes protocolos;
 - Incluir criação de planos alimentares;
 - Incluir sistema de Credenciais;
