@@ -1,18 +1,17 @@
 // Como fazer so um menu abrir por vez?
 
 
-
+let tmb ="";
 let imc ="";
 let peso= "";
 let altura= "";
 let fase_vida="";
+let medio_agua="";
 let imc_maximo ="";
 let imc_minimo ="";
+let minimo_agua="";
 let peso_maximo = "";
 let diagnosticoIMC = "";
-let tmb ="";
-let minimo_agua="";
-let medio_agua="";
 
 let fieldset_prontuario_aberto=false;
 let fieldset_antropometria_aberto=false;
@@ -24,19 +23,22 @@ let alturaInput = document.getElementById('altura');
 const botao_prontuario = document.getElementById('botao_prontuario');
 const botao_antropometria = document.getElementById('botao_antropometria');
 
-const tabela_idade                 = ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18"];
-const imc_maximo_criança_feminino  = ["0","0","17.10","16.80","16.80","16.90","17.00", "17.30", "17.70", "18.30", "19.00", "19.90", "20.80", "21.80", "22.70", "23.50", "24.10", "24.50", "24.80"];
-const imc_minimo_criança_feminino  = ["0","0","14.40","14.20","14.00","13.90","13.90", "13.90", "14.10", "14.40", "14.80", "15.30", "16.00", "16.60", "17.20", "17.80", "18.20", "18.40", "18.60"];
-const imc_maximo_criança_masculino = ["0","0","17.30","16.90","16.70","16.60","16.80", "17.00", "17.40", "17.90", "18.50", "19.20", "19.90", "20.80", "21.80", "22.70", "23.50", "24.30", "24.90"];
-const imc_minimo_criança_masculino = ["0","0","14.80","14.40","14.10","14.00","14.10", "14.20", "14.40", "14.60", "14.90", "15.30", "15.80", "16.40", "17.00", "17.60", "18.20", "18.80", "19.20"];
+const tabela_idade                   =  ["0","1","2"    ,"3"    ,"4"    ,"5"    ,"6"    ,"7"     ,"8"     ,"9"     ,"10"    ,"11"    ,"12"    ,"13"    ,"14"    ,"15"    ,"16"    ,"17"    ,"18"    ];
+const imc_maximo_criança_feminino    =  ["0","0","17.10","16.80","16.80","16.90","17.00", "17.30", "17.70", "18.30", "19.00", "19.90", "20.80", "21.80", "22.70", "23.50", "24.10", "24.50", "24.80"];
+const imc_obesidade_criança_feminino =  ["0","0","18.70","18.40","18.50","18.80","19.20", "19.80", "20.60", "21.50", "22.60", "23.70", "25.00", "26.20", "27.30", "28.20", "28.90", "29.30", "29.50"];
+const imc_minimo_criança_feminino    =  ["0","0","14.40","14.20","14.00","13.90","13.90", "13.90", "14.10", "14.40", "14.80", "15.30", "16.00", "16.60", "17.20", "17.80", "18.20", "18.40", "18.60"];
+const imc_maximo_criança_masculino   =  ["0","0","17.30","16.90","16.70","16.60","16.80", "17.00", "17.40", "17.90", "18.50", "19.20", "19.90", "20.80", "21.80", "22.70", "23.50", "24.30", "24.90"];
+const imc_obesidade_criança_masculino=  ["0","0","18.90","18.40","18.20","18.30","18.50", "19.00", "19.70", "20.50", "21.40", "22.50", "23.60", "24.80", "25.90", "27.00", "27.90", "28.60", "29.20"];
+const imc_minimo_criança_masculino   =  ["0","0","14.80","14.40","14.10","14.00","14.10", "14.20", "14.40", "14.60", "14.90", "15.30", "15.80", "16.40", "17.00", "17.60", "18.20", "18.80", "19.20"];
 
+
+const span_tmb= document.getElementById('span_tmb');
 const spanImc= document.getElementById('valor_imc');
+const span_agua= document.getElementById('span_agua');
 const spanPesoMaximo= document.getElementById('span_peso_maximo');
 const spanDiagnosticoImc= document.getElementById('span_diagnostico_imc');
-const span_tmb= document.getElementById('span_tmb');
 const fieldset_prontuario = document.querySelector('#fieldset_prontuario');
 const fieldset_antropometria = document.querySelector('#fieldset_antropometria');
-const span_agua= document.getElementById('span_agua');
 
 pesoInput.addEventListener('input', atualizarFuncoes);
 idadeInput.addEventListener('input', atualizarFuncoes);
@@ -75,23 +77,30 @@ function atualizarDiagnostico(){
             peso_maximo = imc_maximo_criança_feminino[idadeInput.value]*((altura/100)*(altura/100));
             imc_minimo = imc_minimo_criança_feminino[idadeInput.value];
             imc_maximo = imc_maximo_criança_feminino[idadeInput.value];
+            imc_obesidade = imc_obesidade_criança_feminino[idadeInput.value];
             if(imc<imc_minimo){diagnosticoIMC="Magreza";}
             else if (imc>=imc_minimo&& imc<=imc_maximo){diagnosticoIMC = "Eutrófico";}
-            else if (imc>imc_maximo){diagnosticoIMC="Excesso de peso";}}
+            else if (imc>imc_maximo&& imc<=imc_obesidade){diagnosticoIMC="Sobrepeso";}
+            else if (imc>imc_obesidade){diagnosticoIMC="Obesidade";}}
         else {
             peso_maximo = imc_maximo_criança_masculino[idadeInput.value]*((altura/100)*(altura/100));
             imc_minimo = imc_minimo_criança_masculino[idadeInput.value];
             imc_maximo = imc_maximo_criança_masculino[idadeInput.value];
+            imc_obesidade = imc_obesidade_criança_masculino[idadeInput.value];
             if(imc<imc_minimo){diagnosticoIMC="Magreza";}
             else if (imc>=imc_minimo&& imc<=imc_maximo){diagnosticoIMC = "Eutrófico";}
-            else if (imc>imc_maximo){diagnosticoIMC="Excesso de peso";}}}
+            else if (imc>imc_maximo&&imc<=imc_obesidade){diagnosticoIMC="Sobrepeso";}
+            else if (imc>imc_obesidade){diagnosticoIMC="Obesidade";}}}  
     else if (fase_vida=="adulto"){
             peso_maximo = 25*((altura/100)*(altura/100));
             imc_minimo = 18.5;
             imc_maximo = 25;
             if(imc<imc_minimo){diagnosticoIMC="Magreza";}
             else if (imc>=imc_minimo&& imc<=imc_maximo){diagnosticoIMC = "Eutrófico";}
-            else if (imc>imc_maximo){diagnosticoIMC="Excesso de peso";}}
+            else if (imc>imc_maximo&&imc<=30){diagnosticoIMC="Sobrepeso";}
+            else if (imc>30&&imc<=34.9){diagnosticoIMC="Obesidade I";}
+            else if (imc>34.9&&imc<=39.9){diagnosticoIMC="Obesidade II";}
+            else if (imc>39.9){diagnosticoIMC="Obesidade III";}}
     spanDiagnosticoImc.textContent = diagnosticoIMC;   
     spanPesoMaximo.textContent = peso_maximo.toFixed(2);
     return}
