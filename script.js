@@ -1,5 +1,3 @@
-// Como fazer so um menu abrir por vez?
-
 
 let tmb ="";
 let imc ="";
@@ -11,15 +9,17 @@ let imc_maximo ="";
 let imc_minimo ="";
 let minimo_agua="";
 let peso_maximo = "";
+let peso_minimo = "";
 let diagnosticoIMC = "";
+let peso_calculo_tmb = "";
 
 let fieldset_prontuario_aberto=false;
 let fieldset_antropometria_aberto=false;
 
-let pesoInput = document.getElementById('peso');
-let sexo_input= document.getElementById('sexo');
-let idadeInput = document.getElementById('idade');
-let alturaInput = document.getElementById('altura');
+const pesoInput = document.getElementById('peso');
+const sexo_input= document.getElementById('sexo');
+const idadeInput = document.getElementById('idade');
+const alturaInput = document.getElementById('altura');
 const botao_prontuario = document.getElementById('botao_prontuario');
 const botao_antropometria = document.getElementById('botao_antropometria');
 
@@ -31,11 +31,11 @@ const imc_maximo_criança_masculino   =  ["0","0","17.30","16.90","16.70","16.60
 const imc_obesidade_criança_masculino=  ["0","0","18.90","18.40","18.20","18.30","18.50", "19.00", "19.70", "20.50", "21.40", "22.50", "23.60", "24.80", "25.90", "27.00", "27.90", "28.60", "29.20"];
 const imc_minimo_criança_masculino   =  ["0","0","14.80","14.40","14.10","14.00","14.10", "14.20", "14.40", "14.60", "14.90", "15.30", "15.80", "16.40", "17.00", "17.60", "18.20", "18.80", "19.20"];
 
-
 const span_tmb= document.getElementById('span_tmb');
 const spanImc= document.getElementById('valor_imc');
 const span_agua= document.getElementById('span_agua');
 const spanPesoMaximo= document.getElementById('span_peso_maximo');
+const span_tmb_anterior= document.getElementById('span_tmb_anterior');
 const spanDiagnosticoImc= document.getElementById('span_diagnostico_imc');
 const fieldset_prontuario = document.querySelector('#fieldset_prontuario');
 const fieldset_antropometria = document.querySelector('#fieldset_antropometria');
@@ -75,6 +75,7 @@ function atualizarDiagnostico(){
     if (fase_vida=="criança"){
         if (sexo_input.value =="feminino"){
             peso_maximo = imc_maximo_criança_feminino[idadeInput.value]*((altura/100)*(altura/100));
+            peso_minimo = imc_minimo_criança_feminino[idadeInput.value]*((altura/100)*(altura/100));
             imc_minimo = imc_minimo_criança_feminino[idadeInput.value];
             imc_maximo = imc_maximo_criança_feminino[idadeInput.value];
             imc_obesidade = imc_obesidade_criança_feminino[idadeInput.value];
@@ -84,6 +85,7 @@ function atualizarDiagnostico(){
             else if (imc>imc_obesidade){diagnosticoIMC="Obesidade";}}
         else {
             peso_maximo = imc_maximo_criança_masculino[idadeInput.value]*((altura/100)*(altura/100));
+            peso_minimo = imc_minimo_criança_masculino[idadeInput.value]*((altura/100)*(altura/100));
             imc_minimo = imc_minimo_criança_masculino[idadeInput.value];
             imc_maximo = imc_maximo_criança_masculino[idadeInput.value];
             imc_obesidade = imc_obesidade_criança_masculino[idadeInput.value];
@@ -93,6 +95,7 @@ function atualizarDiagnostico(){
             else if (imc>imc_obesidade){diagnosticoIMC="Obesidade";}}}  
     else if (fase_vida=="adulto"){
             peso_maximo = 25*((altura/100)*(altura/100));
+            peso_minimo = 18.5*((altura/100)*(altura/100));
             imc_minimo = 18.5;
             imc_maximo = 25;
             if(imc<imc_minimo){diagnosticoIMC="Magreza";}
@@ -105,6 +108,39 @@ function atualizarDiagnostico(){
     spanPesoMaximo.textContent = peso_maximo.toFixed(2);
     return}
 
+
+// Funcao para calcular tmb
+function atualizarTmb(){
+    escolhaDadosTmb();
+    if (idadeInput.value <3){
+        if (sexo_input.value=="feminimo"){tmb=(16.2*peso_calculo_tmb)+ (1.023*(altura/100))- (413);}
+        else                             {tmb = (1.67*peso_calculo_tmb) + (1.517*(altura/100))-(618);}}
+    else if (idadeInput.value >= 3 && idadeInput.value<10){
+        if (sexo_input.value=="feminino"){tmb= (17*peso_calculo_tmb) + (162*(altura/100)) + (317);}
+        else                             { tmb = (19.6*peso_calculo_tmb) + (130*(altura/100)) + (415);}}
+    else if (idadeInput.value >=10 && idadeInput.value<=18){
+        if (sexo_input.value=="feminino"){tmb=  (8.4*peso_calculo_tmb) + (466*(altura/100)) + (200);}
+        else                             {tmb = (16.2*peso_calculo_tmb) + (137*(altura/100)) + (516);}}
+    else if (idadeInput.value >18){
+        if (sexo_input.value=="feminino"){tmb= (655.10) + (9.56*peso_calculo_tmb) + (1.85*(altura)) - (4.68*idadeInput.value);}
+        else                             {tmb = (66.47) + (13.75*peso_calculo_tmb) + (5.0*(altura)) - (6.76*idadeInput.value);}}
+    span_tmb.textContent = tmb.toFixed(0);}
+
+// Funcao para escolha de dados para "calculo tmb"
+function escolhaDadosTmb(){
+    if (diagnosticoIMC == "Magreza"){peso_calculo_tmb = peso_minimo;span_tmb_anterior.textContent = "(peso mínimo)";}
+    else if (diagnosticoIMC == "Eutrófico"){peso_calculo_tmb = peso;span_tmb_anterior.textContent = "";}
+    else {peso_calculo_tmb = peso_maximo;span_tmb_anterior.textContent = "(peso máximo)";}}
+
+// Funcao para calcular Água
+function atualizarAgua(){
+    if(idadeInput.value >18){
+        minimo_agua = peso*35; 
+        span_agua.textContent = minimo_agua.toFixed(0)+" ml";}
+    else{
+        minimo_agua=peso*40;
+        span_agua.textContent = minimo_agua.toFixed(0)+" ml"}}
+
 // Funcao para atualizar todas as funcoes ao clicar em inputs
 function atualizarFuncoes(){
     atualizarAltura();
@@ -114,26 +150,6 @@ function atualizarFuncoes(){
     atualizarTmb();
     atualizarAgua();}
 
-// Funcao para calcular tmb
-function atualizarTmb(){
-    if (idadeInput.value <3){
-        if (sexo_input.value=="feminimo"){tmb=(16.2*peso_maximo)+ (1.023*(altura/100))- (413);}
-	else {tmb = (1.67*peso_maximo) + (1.517*(altura/100))-(618);}}
-    else if (idadeInput.value >= 3 && idadeInput.value<10){
-        if (sexo_input.value=="feminino"){tmb= (17*peso_maximo) + (162*(altura/100)) + (317);}
-        else { tmb = (19.6*peso_maximo) + (130*(altura/100)) + (415);}}
-    else if (idadeInput.value >=10 && idadeInput.value<=18){
-        if (sexo_input.value=="feminino"){tmb=  (8.4*peso_maximo) + (466*(altura/100)) + (200);}
-        else {tmb = (16.2*peso_maximo) + (137*(altura/100)) + (516);}}
-    else if (idadeInput.value >18){
-        if (sexo_input.value=="feminino"){tmb= (655.10) + (9.56*peso_maximo) + (1.85*(altura)) - (4.68*idadeInput.value);}
-        else{tmb = (66.47) + (13.75*peso_maximo) + (5.0*(altura)) - (6.76*idadeInput.value);}}
-    span_tmb.textContent = tmb.toFixed(0);}
-
-// Funcao para calcular Água
-function atualizarAgua(){
-    if(idadeInput.value >18){minimo_agua = peso_maximo*35; span_agua.textContent = minimo_agua.toFixed(0);}
-    else{minimo_agua=peso_maximo*40;span_agua.textContent = minimo_agua.toFixed(0)}}
 
 // Botoes para abrir
 
