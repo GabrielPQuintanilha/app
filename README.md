@@ -1,4 +1,4 @@
-# Webapp pojetado para uso durante atendimento nutricional com praticidade e simplicidade.
+# WebApp pojetado para uso durante atendimento nutricional com praticidade e simplicidade.
 
 ## Funções:
 - Prontuario;
