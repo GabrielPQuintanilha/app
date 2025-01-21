@@ -19,7 +19,7 @@
 - Incluir criação de planos alimentares;
 - Incluir sistema de Credenciais;
 
-  # Tecnologias usadas
-  - CSS
-  - HTML
-  - Javascript
+# Tecnologias usadas
+- CSS
+- HTML
+- Javascript
